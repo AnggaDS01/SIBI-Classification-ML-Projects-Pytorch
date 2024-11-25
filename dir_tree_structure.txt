@@ -1,0 +1,235 @@
+SIBI-Classification-ML-Projects-Pytorch
+├── Dockerfile
+├── src
+│   ├── SIBI_classifier
+│   │   ├── entity
+│   │   │   ├── config_entity.py
+│   │   │   └── __init__.py
+│   │   ├── utils
+│   │   │   ├── main_utils.py
+│   │   │   └── __init__.py
+│   │   ├── constant
+│   │   │   └── __init__.py
+│   │   ├── ml
+│   │   │   ├── __init__.py
+│   │   │   └── model.py
+│   │   ├── pipeline
+│   │   │   ├── training_pipeline.py
+│   │   │   ├── prediction_pipeline.py
+│   │   │   ├── hyperparameter_tuning_pipeline.py
+│   │   │   └── __init__.py
+│   │   ├── exception
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── configuration
+│   │   │   ├── __init__.py
+│   │   │   └── configuration.py
+│   │   ├── components
+│   │   │   ├── model_pusher_components
+│   │   │   │   ├── utils
+│   │   │   │   ├── model_pusher.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── __init__.py
+│   │   │   ├── data_ingestion_components
+│   │   │   │   ├── utils
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── data_ingestion.py
+│   │   │   ├── model_trainer_components
+│   │   │   │   ├── utils
+│   │   │   │   ├── model_trainer.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── data_preprocessing_components
+│   │   │   │   ├── utils
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── data_preprocessing.py
+│   │   │   ├── model_evaluation_components
+│   │   │   │   ├── model_evaluation.py
+│   │   │   │   ├── utils
+│   │   │   │   └── __init__.py
+│   │   │   ├── prediction_components
+│   │   │   │   ├── utils
+│   │   │   │   ├── prediction.py
+│   │   │   │   └── __init__.py
+│   │   │   └── hyperparameter_tuning_components
+│   │   │       ├── utils
+│   │   │       ├── hyperparameter_tuning.py
+│   │   │       └── __init__.py
+│   │   ├── logger
+│   │   │   ├── logger_config.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── logger_config.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   └── __pycache__
+│   │       └── __init__.cpython-311.pyc
+│   └── SIBI_classifier.egg-info
+│       ├── PKG-INFO
+│       ├── SOURCES.txt
+│       ├── dependency_links.txt
+│       └── top_level.txt
+├── template
+│   └── index.html
+├── template.py
+├── setup.py
+├── params.yaml
+├── data
+│   └── .gitkeep
+├── app.py
+├── requirements.txt
+├── .dockerignore
+├── config.yaml
+├── .gitignore
+├── .env
+├── notebooks
+│   └── trials.ipynb
+├── LICENSE
+├── README.md
+├── dir_tree_structure.py
+└── .git
+    ├── branches
+    ├── description
+    ├── COMMIT_EDITMSG
+    ├── refs
+    │   ├── remotes
+    │   │   └── origin
+    │   │       └── main
+    │   ├── tags
+    │   └── heads
+    │       └── main
+    ├── config
+    ├── index
+    ├── HEAD
+    ├── hooks
+    │   ├── pre-commit.sample
+    │   ├── post-update.sample
+    │   ├── fsmonitor-watchman.sample
+    │   ├── pre-applypatch.sample
+    │   ├── pre-merge-commit.sample
+    │   ├── pre-receive.sample
+    │   ├── pre-rebase.sample
+    │   ├── sendemail-validate.sample
+    │   ├── prepare-commit-msg.sample
+    │   ├── applypatch-msg.sample
+    │   ├── pre-push.sample
+    │   ├── push-to-checkout.sample
+    │   ├── commit-msg.sample
+    │   └── update.sample
+    ├── packed-refs
+    ├── objects
+    │   ├── ed
+    │   │   └── 1b6eec0f239c0069af95917e64d1649f32fa0a
+    │   ├── 4b
+    │   │   └── 825dc642cb6eb9a060e54bf8d69288fbee4904
+    │   ├── 50
+    │   │   └── ff364188921566cff9cda06588fb59f061aad0
+    │   ├── 6f
+    │   │   ├── 1235496e362e3d2876c47c728faaa37f3eed38
+    │   │   └── cf2b0678d021afbecd100e0efd661d03eed3be
+    │   ├── 7b
+    │   │   └── 9fef604b5874478d8b73f9047a4a2314dcf415
+    │   ├── 62
+    │   │   └── 2b53890bc7a7420d2f0142ff7acdde819fd46b
+    │   ├── 11
+    │   │   └── a49c95acb333c019000d2b9d77152d35484cf6
+    │   ├── 0a
+    │   │   ├── 5568b3eb72786b7d025f317905c26d9b2a59ce
+    │   │   └── b9ca6bd6a1d79dc044a3119f8064444b37ea47
+    │   ├── 3b
+    │   │   └── e76edf53da78164024d542dd413bc0d56688bc
+    │   ├── ee
+    │   │   └── 4925d9eb40cc5501ef7a74b22e28e31aab906d
+    │   ├── 83
+    │   │   └── 3b7e66a365f9f0821d75aae3d60bd4b3a96da0
+    │   ├── 27
+    │   │   └── 6e7895a0acb5dbd4faa80244018385913bd426
+    │   ├── d9
+    │   │   └── 9da2382ae1400c8e56e0651314f3139effabb9
+    │   ├── 9a
+    │   │   ├── a82525fc2d1b50464801726d3fd6b03ba7bb4a
+    │   │   └── d550a82287d8a4ad648f63d88c19dba48f06f9
+    │   ├── 20
+    │   │   └── 652bc5b82e439ecdf1f471fb40572455215b03
+    │   ├── 59
+    │   │   └── 5fb86b968635ea3155ee6b5bfdc34d30373bce
+    │   ├── 53
+    │   │   └── 8b7283f288c7d9e3f2daddf27c0366911c129d
+    │   ├── b0
+    │   │   └── 476c06b0b4a427667c396c9fbe7ed2e1234cec
+    │   ├── pack
+    │   ├── ea
+    │   │   └── a3a15a52bc11379bc745a10acf88e3d90aba64
+    │   ├── 38
+    │   │   └── 280d849356112a0219c19b49cfb178a4f68b5a
+    │   ├── 3f
+    │   │   └── 9563894b93d028a85fcd7fdd01674686a1bbb4
+    │   ├── d2
+    │   │   └── 952e3a62ba7e7a4db28ee0f97f104404ab3a44
+    │   ├── f6
+    │   │   ├── 726d3ddf2a71685e50e5aa8346aa48b393a336
+    │   │   ├── b8147d152528bb84229edc76c627d838e14ae2
+    │   │   └── 2bac35be0b5f80efbbc0668d36eb3c84ce0f32
+    │   ├── ef
+    │   │   └── 5fddc4d7fe080c6192f6400999b13ff9b41d59
+    │   ├── bd
+    │   │   └── fe0d55baa88911bf9da0b627b3080832fa0103
+    │   ├── 4e
+    │   │   └── fd1a81ff71318e84d1ecdced17ddfa4cb1c130
+    │   ├── e2
+    │   │   └── 4c5291f55bbdb2ccf3c1f0857200e03ac24481
+    │   ├── d5
+    │   │   └── 64d0bc3dd917926892c55e3706cc116d5b165e
+    │   ├── ba
+    │   │   └── b7d645372d7c191f205f98875ad923c918130a
+    │   ├── f3
+    │   │   └── 349da02c3a1b101e97f4af4edcd153ba5969c2
+    │   ├── 1f
+    │   │   └── 30b681b5a0ffc3b04e00cf90ca54b260ab8d6e
+    │   ├── d0
+    │   │   └── fdaa1920b35c8222245953ba8b7fbe1dc4f3ef
+    │   ├── a6
+    │   │   └── e820ca1d58c97de2eaadf35c57320b1beff18a
+    │   ├── 7f
+    │   │   └── 126dde7752393425c833e09da356ac6c575663
+    │   ├── b1
+    │   │   └── 7a02f844bda9d8c6785cfd2192f74d2a7de741
+    │   ├── 82
+    │   │   └── f927558a3dff0ea8c20858856e70779fd02c93
+    │   ├── 15
+    │   │   └── 4722ad06addac2d8cc5e0803a8feff3ce09411
+    │   ├── ff
+    │   │   └── d3fd1ff0b4a0f152e607daa7e63cc411d669d5
+    │   ├── cc
+    │   │   └── 767fef23b0b3dc7c47788f996520cf4a0d656e
+    │   ├── 56
+    │   │   └── 6262530997c0fcf5490a94f0bc998d8ef3b8cc
+    │   ├── 6a
+    │   │   └── adcc7ea58f7294a717bedba4a17562cbb5e0be
+    │   ├── e6
+    │   │   ├── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+    │   │   └── 6cb8ea91746060f3e8d3f134d52cdccb773a9b
+    │   ├── f1
+    │   │   └── 0a5c42c6ebf3c3544399875845d496b82a4e8c
+    │   ├── dc
+    │   │   └── d0979fbccb1cc5247321cf80fb9241b0982ac7
+    │   ├── 94
+    │   │   └── 700fa77a3c112f83688f2486fa265603fb7269
+    │   ├── 9d
+    │   │   └── 1dcfdaf1a6857c5f83dc27019c7600e1ffaff8
+    │   ├── e8
+    │   │   └── da3c9401e88ea1c23206ebd0fe502f8fb2f4f7
+    │   ├── 26
+    │   │   └── cf27803285a738652d23fe011277ccbc44ecb9
+    │   └── info
+    ├── logs
+    │   ├── refs
+    │   │   ├── remotes
+    │   │   │   └── origin
+    │   │   └── heads
+    │   │       └── main
+    │   └── HEAD
+    ├── ORIG_HEAD
+    ├── FETCH_HEAD
+    └── info
+        └── exclude
+
+96 directories, 136 files

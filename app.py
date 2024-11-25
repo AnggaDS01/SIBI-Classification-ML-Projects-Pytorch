@@ -1,5 +1,4 @@
-from src.SIBI_classifier.logger.logger_config import setup_logger, color_text, highlight_keywords
-
+from src.SIBI_classifier.logger.logger_config import setup_logger, color_text, highlight_keywords, clean_log_file
 
 if __name__ == "__main__":
     # Set up logger
@@ -17,3 +16,5 @@ if __name__ == "__main__":
     raw_message = "This is an informational message with a warning."
     highlighted_message = highlight_keywords(raw_message, keywords, "yellow")
     logger.info(highlighted_message)
+
+    clean_log_file()

@@ -1,20 +1,17 @@
+import re
 import logging
-import os
 from datetime import datetime
-from from_root import from_root
+import os
 from colorlog import ColoredFormatter
 
+# Generate a timestamped log file
+LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
+# Create directory for logs if it doesn't exist
+log_path = os.path.join(os.getcwd(), 'logs')  # Replace `from_root()` with current directory
+os.makedirs(log_path, exist_ok=True)
+LOG_FILE_PATH = os.path.join(log_path, LOG_FILE)
+
 def color_text(text, color):
-    """
-    Apply ANSI color escape codes to text.
-
-    Args:
-        text (str): The text to colorize.
-        color (str): The color name (e.g., 'red', 'green', 'yellow').
-
-    Returns:
-        str: Colored text with ANSI escape codes.
-    """
     colors = {
         "red": "\033[91m",
         "green": "\033[92m",
@@ -25,50 +22,31 @@ def color_text(text, color):
         "white": "\033[97m",
         "reset": "\033[0m",
     }
+
     return f"{colors.get(color, colors['reset'])}{text}{colors['reset']}"
 
+
 def highlight_keywords(message, keywords, color):
-    """
-    Highlight specific keywords in a message with the specified color.
-
-    Args:
-        message (str): The original log message.
-        keywords (list): A list of keywords to highlight.
-        color (str): The color to apply to the keywords.
-
-    Returns:
-        str: The log message with highlighted keywords.
-    """
     for keyword in keywords:
         message = message.replace(keyword, color_text(keyword, color))
     return message
 
 
+def remove_ansi_codes(text):
+    ansi_escape = re.compile(r'\033\[[0-9;]*m')
+    return ansi_escape.sub('', text)
+
+
 def setup_logger(logger_name):
-    """
-    Set up a logger with file and colored console handlers.
-
-    Args:
-        logger_name (str): Name of the logger.
-
-    Returns:
-        logging.Logger: Configured logger instance.
-    """
-    # Generate a timestamped log file
-    LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
-
-    # Create directory for logs if it doesn't exist
-    log_path = os.path.join(from_root(), 'logs')
-    os.makedirs(log_path, exist_ok=True)
-    LOG_FILE_PATH = os.path.join(log_path, LOG_FILE)
-
     # Create a logger
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.DEBUG)
 
-    # File handler (plain formatting)
+    # File handler (plain formatting, no ANSI codes)
     file_handler = logging.FileHandler(LOG_FILE_PATH)
     file_handler.setLevel(logging.DEBUG)
+
+    # Formatter that removes ANSI codes
     file_formatter = logging.Formatter("[ %(asctime)s ] %(name)s - %(levelname)s - %(message)s")
     file_handler.setFormatter(file_formatter)
 
@@ -93,5 +71,16 @@ def setup_logger(logger_name):
     # Add handlers to logger
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
-
+    
     return logger
+
+def clean_log_file(log_file_path=LOG_FILE_PATH):
+    ansi_escape = re.compile(r'\033\[[0-9;]*m')
+
+    with open(log_file_path, 'r+') as log_file:
+        cleaned_lines = [ansi_escape.sub('', line) for line in log_file]
+        log_file.seek(0) 
+        log_file.writelines(cleaned_lines)
+        log_file.truncate()
+
+    print(f"Log file cleaned")

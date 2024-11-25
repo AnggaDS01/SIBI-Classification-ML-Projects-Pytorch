@@ -1,0 +1,63 @@
+Trash-Classification-ML-Project
+├── Dockerfile [O]
+├── template [O]
+│   └── index.html [O]
+├── setup.py [O]
+├── params.yaml [O]
+├── data [O]
+│   └── .gitkeep [O]
+├── app.py [O]
+├── tree.py [O]
+├── requirements.txt [O]
+├── trashnet 
+│   ├── entity
+│   │   ├── config_entity.py
+│   │   ├── __init__.py
+│   ├── utils
+│   │   ├── main_utils.py
+│   │   └── __init__.py
+│   ├── constant
+│   │   └── __init__.py
+│   ├── ml
+│   │   ├── __init__.py
+│   │   ├── model.py
+│   ├── pipeline
+│   │   ├── training_pipeline.py
+│   │   ├── prediction_pipeline.py
+│   │   ├── hyperparameter_tuning_pipeline.py
+│   │   └── __init__.py
+│   ├── exception
+│   │   ├── __init__.py
+│   ├── __init__.py
+│   ├── configuration
+│   │   ├── __init__.py
+│   │   └── configuration.py
+│   ├── components
+│   │   ├── model_pusher_components
+│   │   │   └── model_pusher.py
+│   │   ├── __init__.py
+│   │   ├── data_ingestion_components
+│   │   │   ├── utils
+│   │   │   └── data_ingestion.py
+│   │   ├── model_trainer_components
+│   │   │   ├── utils
+│   │   │   └── model_trainer.py
+│   │   ├── data_preprocessing_components
+│   │   │   ├── utils
+│   │   │   └── data_preprocessing.py
+│   │   ├── model_evaluation_components
+│   │   │   ├── model_evaluation.py
+│   │   │   └── utils
+│   │   ├── prediction_components
+│   │   │   ├── utils
+│   │   │   └── prediction.py
+│   │   └── hyperparameter_tuning_components
+│   │       ├── utils
+│   │       │   └── sweep_setup.py
+│   │       └── hyperparameter_tuning.py
+│   ├── logger
+│   │   ├── __init__.py
+├── .dockerignore
+├── config.yaml
+├── .env
+└── notebooks

@@ -1,0 +1,7 @@
+ARTIFACTS_ROOT_DIR: artifacts
+
+DATA_INGESTION:
+  DATA_INGESTION_DIR_PATH: artifacts/<model_name>/data_ingestion
+  DATA_DOWNLOAD_STORE_DIR_PATH: artifacts/<model_name>/data_ingestion/SIBI_dataset
+  ZIP_FILE_PATH: artifacts/<model_name>/data_ingestion/SIBI_dataset/SIBI_datasets.zip
+  DATA_DOWNLOAD_URL: https://huggingface.co/datasets/Anggads01/SIBI-datasets/resolve/main/SIBI_datasets.zip

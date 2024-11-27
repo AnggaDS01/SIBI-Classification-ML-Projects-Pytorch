@@ -1,3 +1,5 @@
 colorlog
 from-root
+dill
+python-box
 -e .

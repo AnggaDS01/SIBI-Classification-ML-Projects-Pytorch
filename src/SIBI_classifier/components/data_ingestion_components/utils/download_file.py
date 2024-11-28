@@ -1,10 +1,11 @@
 import requests
 import sys
 
-from SIBI_classifier.logger.logging import log_manager
-from SIBI_classifier.exception import SIBIClassificationException
 from tqdm import tqdm
 from pathlib import Path
+from SIBI_classifier.exception import SIBIClassificationException
+
+from SIBI_classifier.logger.logging import log_manager
 
 def download_zip(
     url: str, 
@@ -23,7 +24,7 @@ def download_zip(
         requests.exceptions.RequestException: If an error occurs during download.
     """
     try:
-        logger = log_manager.setup_logger("download_logger")
+        logger = log_manager.setup_logger("download_zip_logger")
         response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()  # Check for HTTP errors
         

@@ -1,9 +1,10 @@
 import sys
 import zipfile
 
-from SIBI_classifier.logger.logging import log_manager
-from SIBI_classifier.exception import SIBIClassificationException
 from pathlib import Path
+from SIBI_classifier.exception import SIBIClassificationException
+
+from SIBI_classifier.logger.logging import log_manager
 
 def extract_zip(
     zip_file_path: Path, 
@@ -22,7 +23,7 @@ def extract_zip(
         zipfile.BadZipFile: If the file is not a valid zip file.
     """
     try:
-        logger = log_manager.setup_logger("exctract_logger")
+        logger = log_manager.setup_logger("extract_zip_logger")
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
             logger.debug(f"Files extracted to {log_manager.color_text(extract_dir, 'green')}")

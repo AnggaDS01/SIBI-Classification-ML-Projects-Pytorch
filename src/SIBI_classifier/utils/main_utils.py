@@ -77,3 +77,32 @@ def display_function_info(frame) -> tuple:
 
     except Exception as e:
         raise SIBIClassificationException(e, sys)
+    
+
+def custom_title_print(
+        title: str='Title', 
+        n_strip: int=200
+    ) -> None:
+
+    """
+    Mencetak judul yang disesuaikan dengan garis pembatas di atas dan di bawah judul.
+
+    Args:
+        title (str): Judul yang ingin ditampilkan.
+        n_strip (int): Jumlah karakter '=' untuk membuat garis pembatas. Default adalah 80.
+
+    Returns:
+        None
+    """
+
+    try:
+        title = (
+            f"{'=' * n_strip}\n"
+            f"{title.upper().center(n_strip, '=')}\n"
+            f"{'=' * n_strip}"
+        )
+
+        print(title)
+
+    except Exception as e:
+        raise SIBIClassificationException(e, sys)

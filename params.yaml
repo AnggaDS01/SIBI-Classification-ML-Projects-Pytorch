@@ -1,1 +1,16 @@
 MODEL_NAME: DenseNet121
+IMAGE_SIZE: [224, 224, 3]
+
+DATASET_NAME: SIBI_datasets
+SPLIT_RATIO: [0.9, 0.1]
+LABEL_LIST: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+SEED: 42
+BATCH_SIZE: 16
+EPOCHS: 25
+LEARNING_RATE: 0.001
+LOSS_FUNCTION: sparse_categorical_crossentropy
+METRICS: ['accuracy']
+
+NORMALIZE_CONFUSION_MATRIX: True
+FIGSIZE: [18, 12]

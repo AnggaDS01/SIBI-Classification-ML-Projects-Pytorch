@@ -1,7 +1,7 @@
 import sys
 
-from src.SIBI_classifier.logger.logging import log_manager
-from src.SIBI_classifier.exception import SIBIClassificationException
+from SIBI_classifier.logger.logging import log_manager
+from SIBI_classifier.exception import SIBIClassificationException
 
 # Contoh Penggunaan
 if __name__ == "__main__":

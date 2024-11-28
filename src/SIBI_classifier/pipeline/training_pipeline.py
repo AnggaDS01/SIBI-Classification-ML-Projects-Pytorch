@@ -1,12 +1,13 @@
 import sys
 import inspect
-from SIBI_classifier.logger.logging import log_manager
+
 from SIBI_classifier.exception import SIBIClassificationException
 from SIBI_classifier.configuration.configuration import ConfigurationManager
 from SIBI_classifier.components.data_ingestion_components.data_ingestion import DataIngestion
+from SIBI_classifier.entity.config_entity import DataIngestionConfig
 
-from SIBI_classifier.entity.config_entity import (DataIngestionConfig)
-from SIBI_classifier.utils.main_utils import (display_function_info)
+from SIBI_classifier.utils.main_utils import display_function_info
+from SIBI_classifier.logger.logging import log_manager
 
 class TrainPipeline:
     def __init__(self):

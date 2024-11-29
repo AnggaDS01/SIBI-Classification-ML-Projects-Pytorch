@@ -9,7 +9,8 @@ from box.exceptions import BoxValueError
 from SIBI_classifier.exception import SIBIClassificationException
 from SIBI_classifier.logger.logging import log_manager
 
-create_directories_logger = log_manager.setup_logger("CreateDirectoriesLogger")
+create_directories_logger = log_manager.setup_logger("create_directories_logger")
+custom_title_print_logger = log_manager.setup_logger("title_print_logger")
 
 def read_yaml(path_to_yaml: Path=None) -> ConfigBox:
     """reads yaml file and returns
@@ -81,7 +82,7 @@ def display_function_info(frame) -> tuple:
 
 def custom_title_print(
         title: str='Title', 
-        n_strip: int=200
+        n_strip: int=50
     ) -> None:
 
     """
@@ -96,13 +97,8 @@ def custom_title_print(
     """
 
     try:
-        title = (
-            f"{'=' * n_strip}\n"
-            f"{title.upper().center(n_strip, '=')}\n"
-            f"{'=' * n_strip}"
-        )
-
-        print(title)
+        title = f"{title.upper().center(n_strip, '=')}"
+        custom_title_print_logger.info(title)
 
     except Exception as e:
         raise SIBIClassificationException(e, sys)

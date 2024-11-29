@@ -5,20 +5,20 @@ from datetime import datetime
 from colorlog import ColoredFormatter
 
 
-# class SingletonMeta(type):
-#     """
-#     Metaclass for creating Singletons.
-#     """
-#     _instances = {}
+class SingletonMeta(type):
+    """
+    Metaclass for creating Singletons.
+    """
+    _instances = {}
 
-#     def __call__(cls, *args, **kwargs):
-#         if cls not in cls._instances:
-#             instance = super().__call__(*args, **kwargs)
-#             cls._instances[cls] = instance
-#         return cls._instances[cls]
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
     
 
-class LogManager:
+class LogManager(metaclass=SingletonMeta):
     def __init__(self, log_dir="logs", log_name=None):
         """
         Initialize the LogManager with the log directory and log file name.

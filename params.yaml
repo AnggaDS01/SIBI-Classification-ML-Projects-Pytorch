@@ -12,5 +12,13 @@ LEARNING_RATE: 0.001
 LOSS_FUNCTION: sparse_categorical_crossentropy
 METRICS: ['accuracy']
 
+# ====== Data Augmentation ======
+BRIGHTNESS: [0.75, 1.5] 
+CONTRAST: [0.5, 1.2] 
+SATURATION: [0.5, 2.75] 
+HUE: [-0.1, 0.1]
+PROB: 0.5
+
+# ====== Reports ======
 NORMALIZE_CONFUSION_MATRIX: True
 FIGSIZE: [18, 12]

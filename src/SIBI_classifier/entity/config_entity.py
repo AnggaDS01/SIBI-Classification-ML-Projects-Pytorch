@@ -19,3 +19,8 @@ class DataPreprocessingConfig:
     split_ratio: tuple
     img_size: tuple
     seed: int
+    brightness: tuple
+    contrast: tuple
+    saturation: tuple
+    hue: tuple
+    p: float

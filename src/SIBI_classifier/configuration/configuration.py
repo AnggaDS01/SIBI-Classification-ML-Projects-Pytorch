@@ -41,7 +41,12 @@ class ConfigurationManager:
             label_list = self.params.LABEL_LIST,
             split_ratio = self.params.SPLIT_RATIO,
             img_size = self.params.IMAGE_SIZE,
-            seed = self.params.SEED
+            seed = self.params.SEED,
+            brightness = self.params.BRIGHTNESS,
+            contrast = self.params.CONTRAST,
+            saturation = self.params.SATURATION,
+            hue = self.params.HUE,
+            p = self.params.PROB,
         )
 
         return data_preprocessing_config

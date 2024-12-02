@@ -13,3 +13,11 @@ DATA_PREPROCESSING:
   LABELS_LIST_FILE_PATH: artifacts/<model_name>/data_preprocessing/objects/label_list.pkl
   CLASS_WEIGHTS_FILE_PATH: artifacts/<model_name>/data_preprocessing/objects/class_weights.pkl
   IMAGE_EXTENSION_REGEX: "\\.(jpe?g|png)$"
+
+MODEL_TRAINING:
+  MODEL_DIR_PATH: artifacts/<model_name>/results/model
+  MODEL_FILE_PATH: artifacts/<model_name>/results/model/best_model.pth
+  REPORTS_DIR_PATH: artifacts/<model_name>/results/reports
+  TRAINING_TABLE_FILE_PATH: artifacts/<model_name>/results/reports/training_tabel.csv
+  EPOCH_TABLE_FILE_PATH: artifacts/<model_name>/results/reports/epoch_tabel.csv
+  TRAINING_PLOT_FILE_PATH: artifacts/<model_name>/results/reports/training_plot.png

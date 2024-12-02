@@ -1,7 +1,7 @@
 from SIBI_classifier.constant import *
 from pathlib import Path
 from SIBI_classifier.utils.main_utils import read_yaml, create_directories
-from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig)
+from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig, ModelTrainerConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -50,6 +50,26 @@ class ConfigurationManager:
         )
 
         return data_preprocessing_config
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.MODEL_TRAINING
+        
+        create_directories([config.MODEL_DIR_PATH])
+        create_directories([config.REPORTS_DIR_PATH])
+
+        model_trainer_config = ModelTrainerConfig(
+            model_file_path = Path(config.MODEL_FILE_PATH),
+            training_table_file_path = Path(config.TRAINING_TABLE_FILE_PATH),
+            epoch_table_file_path = Path(config.EPOCH_TABLE_FILE_PATH),
+            training_plot_file_path = Path(config.TRAINING_PLOT_FILE_PATH),
+            batch_size = self.params.BATCH_SIZE,
+            epochs = self.params.EPOCHS,
+            learning_rate = self.params.LEARNING_RATE,
+            loss_function = self.params.LOSS_FUNCTION,
+            metrics = self.params.METRICS,
+        )
+
+        return model_trainer_config
     
 # if __name__ == '__main__':
 #     config = ConfigurationManager()

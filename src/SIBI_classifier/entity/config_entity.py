@@ -24,3 +24,15 @@ class DataPreprocessingConfig:
     saturation: tuple
     hue: tuple
     p: float
+
+@dataclass
+class ModelTrainerConfig:
+    model_file_path: Path
+    training_table_file_path: Path
+    epoch_table_file_path: Path
+    training_plot_file_path: Path
+    batch_size: int
+    epochs: int
+    learning_rate: float
+    loss_function: str
+    metrics: list

@@ -21,3 +21,19 @@ MODEL_TRAINING:
   TRAINING_TABLE_FILE_PATH: artifacts/<model_name>/results/reports/training_tabel.csv
   EPOCH_TABLE_FILE_PATH: artifacts/<model_name>/results/reports/epoch_tabel.csv
   TRAINING_PLOT_FILE_PATH: artifacts/<model_name>/results/reports/training_plot.png
+
+WANDB:
+  PROJECT_NAME: trashnet-adatama-test-01
+  SWEEP_COUNT: 5
+  SWEEP_CONFIG:
+    method: grid
+    metric:
+      name: val_accuracy
+      goal: maximize
+    parameters:
+      learning_rate:
+        values: [0.0001, 0.001]
+      batch_size:
+        values: [16, 32, 64]
+      epochs:
+        values: [1]

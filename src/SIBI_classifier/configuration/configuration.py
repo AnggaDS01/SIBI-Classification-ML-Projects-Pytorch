@@ -1,7 +1,7 @@
 from SIBI_classifier.constant import *
 from pathlib import Path
 from SIBI_classifier.utils.main_utils import read_yaml, create_directories
-from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig, ModelTrainerConfig)
+from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig, ModelTrainerConfig, WandbConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -70,6 +70,32 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+    
+    def get_wandb_config(self) -> WandbConfig:
+        config = self.config.WANDB
+
+        config_dicts = {
+            "learning_rate": self.params.LEARNING_RATE,
+            "loss_function": self.params.LOSS_FUNCTION,
+            "metrics": self.params.METRICS,
+            "batch_size": self.params.BATCH_SIZE,
+            "epochs": self.params.EPOCHS,
+            "architecture": self.params.MODEL_NAME,
+            "dataset": self.params.DATASET_NAME
+        }
+
+        project = config.PROJECT_NAME
+        sweep_config = config.SWEEP_CONFIG
+        sweep_count = config.SWEEP_COUNT
+        
+        wandb_config = WandbConfig(
+            project_name = project,
+            config = config_dicts,
+            sweep_config = sweep_config,
+            sweep_count = sweep_count
+        )
+
+        return wandb_config
     
 # if __name__ == '__main__':
 #     config = ConfigurationManager()

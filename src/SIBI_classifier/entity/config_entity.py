@@ -36,3 +36,10 @@ class ModelTrainerConfig:
     learning_rate: float
     loss_function: str
     metrics: list
+
+@dataclass
+class WandbConfig:
+    project_name: str
+    config: dict
+    sweep_config: dict
+    sweep_count: int

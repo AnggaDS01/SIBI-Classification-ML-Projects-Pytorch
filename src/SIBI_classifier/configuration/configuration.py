@@ -1,3 +1,5 @@
+import torch
+
 from SIBI_classifier.constant import *
 from pathlib import Path
 from SIBI_classifier.utils.main_utils import read_yaml, create_directories
@@ -32,7 +34,7 @@ class ConfigurationManager:
     
     def get_data_preprocessing_config(self) -> DataIngestionConfig:
         config = self.config.DATA_PREPROCESSING
-        create_directories([config.OBJECTS_DIR_PATH])
+        # create_directories([config.OBJECTS_DIR_PATH])
 
         data_preprocessing_config = DataPreprocessingConfig(
             labels_list_file_path = Path(config.LABELS_LIST_FILE_PATH),
@@ -40,8 +42,10 @@ class ConfigurationManager:
             image_extension_regex = Path(config.IMAGE_EXTENSION_REGEX),
             label_list = self.params.LABEL_LIST,
             split_ratio = self.params.SPLIT_RATIO,
-            img_size = self.params.IMAGE_SIZE,
             seed = self.params.SEED,
+            img_size = self.params.IMAGE_SIZE,
+            mean = self.params.MEAN,
+            std = self.params.STD,
             brightness = self.params.BRIGHTNESS,
             contrast = self.params.CONTRAST,
             saturation = self.params.SATURATION,
@@ -55,7 +59,7 @@ class ConfigurationManager:
         config = self.config.MODEL_TRAINING
         
         create_directories([config.MODEL_DIR_PATH])
-        create_directories([config.REPORTS_DIR_PATH])
+        # create_directories([config.REPORTS_DIR_PATH])
 
         model_trainer_config = ModelTrainerConfig(
             model_file_path = Path(config.MODEL_FILE_PATH),
@@ -65,8 +69,7 @@ class ConfigurationManager:
             batch_size = self.params.BATCH_SIZE,
             epochs = self.params.EPOCHS,
             learning_rate = self.params.LEARNING_RATE,
-            loss_function = self.params.LOSS_FUNCTION,
-            metrics = self.params.METRICS,
+            criterion = self.params.CRITERION,
         )
 
         return model_trainer_config
@@ -74,14 +77,25 @@ class ConfigurationManager:
     def get_wandb_config(self) -> WandbConfig:
         config = self.config.WANDB
 
+        # Mapping dari nama ke kelas
+        criterion_map = {
+            "CrossEntropyLoss": torch.nn.CrossEntropyLoss,
+            "MSELoss": torch.nn.MSELoss,
+        }
+
+        optimizer_map = {
+            "Adam": torch.optim.Adam,
+            "SGD": torch.optim.SGD,
+        }
+
         config_dicts = {
-            "learning_rate": self.params.LEARNING_RATE,
-            "loss_function": self.params.LOSS_FUNCTION,
-            "metrics": self.params.METRICS,
-            "batch_size": self.params.BATCH_SIZE,
             "epochs": self.params.EPOCHS,
+            "batch_size": self.params.BATCH_SIZE,
+            "learning_rate": self.params.LEARNING_RATE,
+            "criterion": criterion_map[self.params.CRITERION],
+            "optimizer": optimizer_map[self.params.OPTIMIZER],
             "architecture": self.params.MODEL_NAME,
-            "dataset": self.params.DATASET_NAME
+            "dataset": self.params.DATASET_NAME,
         }
 
         project = config.PROJECT_NAME
@@ -99,6 +113,6 @@ class ConfigurationManager:
     
 # if __name__ == '__main__':
 #     config = ConfigurationManager()
-#     get_config = config.get_model_evaluation_config()
+#     get_config = config.get_wandb_config()
 
 #     print(get_config)

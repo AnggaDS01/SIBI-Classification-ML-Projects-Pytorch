@@ -17,8 +17,10 @@ class DataPreprocessingConfig:
     image_extension_regex: str
     label_list: list
     split_ratio: tuple
-    img_size: tuple
     seed: int
+    img_size: tuple
+    mean: tuple
+    std: tuple
     brightness: tuple
     contrast: tuple
     saturation: tuple
@@ -34,8 +36,7 @@ class ModelTrainerConfig:
     batch_size: int
     epochs: int
     learning_rate: float
-    loss_function: str
-    metrics: list
+    criterion: str
 
 @dataclass
 class WandbConfig:

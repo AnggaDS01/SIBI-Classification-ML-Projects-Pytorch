@@ -1,5 +1,4 @@
 MODEL_NAME: DenseNet121
-IMAGE_SIZE: [224, 224, 3]
 
 DATASET_NAME: SIBI_datasets
 SPLIT_RATIO: [0.9, 0.1]
@@ -7,17 +6,20 @@ LABEL_LIST: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N
 
 SEED: 42
 BATCH_SIZE: 16
-EPOCHS: 3
+EPOCHS: 5
 LEARNING_RATE: 0.001
-LOSS_FUNCTION: categorical_crossentropy
-METRICS: ['accuracy']
+CRITERION: CrossEntropyLoss
+OPTIMIZER: Adam
 
 # ====== Data Augmentation ======
-BRIGHTNESS: [0.75, 1.5] 
-CONTRAST: [0.5, 1.2] 
-SATURATION: [0.5, 2.75] 
-HUE: [-0.1, 0.1]
-PROB: 0.5
+IMAGE_SIZE: [224, 224, 3]
+MEAN : [0., 0., 0.]
+STD: [1., 1., 1.]
+BRIGHTNESS: [0.9, 1.1] 
+CONTRAST: [0.9, 1.1]   
+SATURATION: [0.9, 1.1]  
+HUE: [-0.05, 0.05]      
+PROB: 0.5             
 
 # ====== Reports ======
 NORMALIZE_CONFUSION_MATRIX: True

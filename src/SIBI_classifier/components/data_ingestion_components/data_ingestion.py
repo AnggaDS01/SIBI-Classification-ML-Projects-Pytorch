@@ -9,6 +9,8 @@ from SIBI_classifier.components.data_ingestion_components.utils.extract_file imp
 from SIBI_classifier.utils.main_utils import display_function_info
 from SIBI_classifier.logger.logging import log_manager
 
+EXTRACT_ZIP_LOGGER = log_manager.setup_logger("extract_zip_logger")
+
 class DataIngestion:
     def __init__(
             self, 
@@ -30,6 +32,7 @@ class DataIngestion:
         """
         try:
             logger = log_manager.setup_logger("DataIngestionLogger")
+            
             function_name, class_name, file_name = display_function_info(inspect.currentframe())
             logger.info(f"Entered {log_manager.color_text(function_name, 'yellow')} method of {log_manager.color_text(class_name, 'yellow')} class in {log_manager.color_text(file_name, 'cyan')}")
 

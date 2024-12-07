@@ -4,8 +4,9 @@ import sys
 from tqdm import tqdm
 from pathlib import Path
 from SIBI_classifier.exception import SIBIClassificationException
-
 from SIBI_classifier.logger.logging import log_manager
+
+DOWNLOAD_ZIP_LOGGER = log_manager.setup_logger("download zip logger")
 
 def download_zip(
     url: str, 
@@ -24,7 +25,6 @@ def download_zip(
         requests.exceptions.RequestException: If an error occurs during download.
     """
     try:
-        logger = log_manager.setup_logger("download_zip_logger")
         response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()  # Check for HTTP errors
         
@@ -38,7 +38,7 @@ def download_zip(
                 file.write(chunk)
                 bar.update(len(chunk))
 
-        logger.debug(f"File downloaded to {log_manager.color_text(save_zip_file_path, 'blue')}")
+        DOWNLOAD_ZIP_LOGGER.debug(f"File downloaded to {log_manager.color_text(save_zip_file_path, 'blue')}")
 
     except requests.exceptions.RequestException as e:
         raise Exception(f"Error downloading the file: {e}")

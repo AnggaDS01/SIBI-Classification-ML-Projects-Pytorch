@@ -1,19 +1,16 @@
 import torch
-from SIBI_classifier.configuration.configuration import ConfigurationManager
-
-CONFIG = ConfigurationManager()
-DATA_PREPROCESSING_CONFIG = CONFIG.get_data_preprocessing_config()
 
 # Functional API - Define the forward pass
 class TransferLearningModel(torch.nn.Module):
 	def __init__(
 			self, 
-			base_model: torch.nn.Module=None, 
+			base_model: torch.nn.Module=None,
+			class_names: list=None
 		) -> None:
         
 		super(TransferLearningModel, self).__init__()
 
-		length_label_list = len(DATA_PREPROCESSING_CONFIG.label_list)
+		length_label_list = len(class_names)
 		num_classes = 1 if length_label_list == 2 else length_label_list
 
 		self.base_model = base_model
@@ -27,8 +24,8 @@ class TransferLearningModel(torch.nn.Module):
 		self.activation = torch.nn.Sigmoid() if num_classes == 1 else torch.nn.Softmax(dim=1)
 
 	def forward(
-                self, 
-                x: torch.Tensor
+			self, 
+			x: torch.Tensor
         ) -> torch.Tensor:
 		
 		# Pass through the feature extractor

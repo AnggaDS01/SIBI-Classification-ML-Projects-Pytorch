@@ -1,7 +1,6 @@
-from SIBI_classifier.logger.logging import log_manager
+from SIBI_classifier.logger.logging import *
 import torchvision.transforms as transforms 
 
-IMAGE_PROCESSING_LOGGER = log_manager.setup_logger("image processing logger")
 COLOR_TEXT = 'yellow'
 
 class ImageProcessor:

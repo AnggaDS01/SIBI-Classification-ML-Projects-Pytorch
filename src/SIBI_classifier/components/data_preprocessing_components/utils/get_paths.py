@@ -7,9 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 from SIBI_classifier.exception import SIBIClassificationException
 from SIBI_classifier.utils.main_utils import custom_title_print
-from SIBI_classifier.logger.logging import log_manager
+from SIBI_classifier.logger.logging import *
 
-COLLECT_AND_COMBINE_IMAGES_LOGGER = log_manager.setup_logger("collect and combine images logger")
 COLOR_TEXT = "yellow"
 
 def collect_images_with_regex_and_count(

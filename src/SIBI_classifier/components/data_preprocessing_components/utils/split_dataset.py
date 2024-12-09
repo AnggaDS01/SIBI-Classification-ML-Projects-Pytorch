@@ -1,9 +1,8 @@
 from torch.utils.data import Dataset, Subset
 from sklearn.model_selection import train_test_split
 
-from SIBI_classifier.logger.logging import log_manager
+from SIBI_classifier.logger.logging import *
 
-SPLIT_TRAIN_VALID_TEST_LOGGER = log_manager.setup_logger("split train valid test logger")
 COLOR_TEXT = 'yellow'
 
 class DatasetSplitter:

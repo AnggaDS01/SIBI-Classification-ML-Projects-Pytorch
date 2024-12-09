@@ -3,9 +3,7 @@ import zipfile
 
 from pathlib import Path
 from SIBI_classifier.exception import SIBIClassificationException
-from SIBI_classifier.logger.logging import log_manager
-
-EXTRACT_ZIP_LOGGER = log_manager.setup_logger("extract zip logger")
+from SIBI_classifier.logger.logging import *
 
 def extract_zip(
     zip_file_path: Path, 

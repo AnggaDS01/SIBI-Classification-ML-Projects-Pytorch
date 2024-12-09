@@ -9,8 +9,6 @@ from SIBI_classifier.components.data_ingestion_components.utils.extract_file imp
 from SIBI_classifier.utils.main_utils import display_function_info
 from SIBI_classifier.logger.logging import log_manager
 
-EXTRACT_ZIP_LOGGER = log_manager.setup_logger("extract_zip_logger")
-
 class DataIngestion:
     def __init__(
             self, 

@@ -6,10 +6,8 @@ from PIL import Image
 
 from torch.utils.data import Dataset
 from SIBI_classifier.utils.main_utils import custom_title_print
-from SIBI_classifier.logger.logging import log_manager
+from SIBI_classifier.logger.logging import *
 
-FILE_PATH_INFO_LOGGER = log_manager.setup_logger("file path info logger")
-DATASET_INSPECT_LOGGER = log_manager.setup_logger("dataset inspect logger")
 COLOR_TEXT = 'yellow'
 
 class FilePathInfo:

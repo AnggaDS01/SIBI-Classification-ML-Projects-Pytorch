@@ -2,13 +2,11 @@ import sys
 import numpy as np
 
 from sklearn.utils.class_weight import compute_class_weight
-from SIBI_classifier.logger.logging import log_manager
 from collections import Counter
 from torch.utils.data import Dataset
-
+from SIBI_classifier.logger.logging import *
 from SIBI_classifier.exception import SIBIClassificationException
 
-CLASS_DISTRIBUTION_LOGGER = log_manager.setup_logger("class distribution logger")
 COLOR_TEXT = 'yellow'
 
 def calculate_class_distribution_torch(

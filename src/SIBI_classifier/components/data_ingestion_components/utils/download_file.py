@@ -3,10 +3,8 @@ import sys
 
 from tqdm import tqdm
 from pathlib import Path
+from SIBI_classifier.logger.logging import *
 from SIBI_classifier.exception import SIBIClassificationException
-from SIBI_classifier.logger.logging import log_manager
-
-DOWNLOAD_ZIP_LOGGER = log_manager.setup_logger("download zip logger")
 
 def download_zip(
     url: str, 

@@ -4,8 +4,8 @@ import numpy as np
 from sklearn.utils.class_weight import compute_class_weight
 from collections import Counter
 from torch.utils.data import Dataset
-from SIBI_classifier.logger.logging import *
 from SIBI_classifier.exception import SIBIClassificationException
+from SIBI_classifier.logger.logging import *
 
 COLOR_TEXT = 'yellow'
 

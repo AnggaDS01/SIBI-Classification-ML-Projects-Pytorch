@@ -3,7 +3,7 @@ from SIBI_classifier.logger.logging import *
 
 COLOR_TEXT = 'yellow'
 
-def model_checkpoint(model, model_file_path, epoch, valid_loss, best_val_loss):
+def checkpoint_callback(model, model_file_path, epoch, valid_loss, best_val_loss):
     MODEL_TRAINING_LOGGER.info(f"Epoch {log_manager.color_text(epoch+1, COLOR_TEXT)} Summary:")
     if valid_loss < best_val_loss:
         best_val_loss = valid_loss
@@ -12,7 +12,10 @@ def model_checkpoint(model, model_file_path, epoch, valid_loss, best_val_loss):
         MODEL_TRAINING_LOGGER.info(f"Saving best model for epoch: {log_manager.color_text(epoch+1, COLOR_TEXT)}")
 
 
-def learning_rate_scheduler(optimizer, step_size, **kwargs):
+def lr_scheduler_callback(optimizer, step_size, **kwargs):
+    if optimizer is None:
+            raise ValueError("Optimizer must be provided for the scheduler!")
+
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=step_size, **kwargs)
 
     return lr_scheduler

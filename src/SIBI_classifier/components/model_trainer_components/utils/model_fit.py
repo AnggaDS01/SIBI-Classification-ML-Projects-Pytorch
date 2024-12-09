@@ -235,7 +235,7 @@ def fit(
     criterion_obj = criterion()
 
     # Create a learning rate scheduler
-    lr_scheduler = learning_rate_scheduler(optimizer_obj, step_size=10)
+    lr_scheduler = lr_scheduler_callback(optimizer_obj, step_size=10)
 
     # Create data loaders for the training and validation datasets
     train_loader, val_loader = get_dataloader(train_pt_datasets, valid_pt_datasets, batch_size, device_mode, num_workers)
@@ -269,7 +269,7 @@ def fit(
         )
 
         # Save the model checkpoint if the validation loss improves
-        model_checkpoint(model, model_file_path, epoch, valid_loss, best_val_loss)
+        checkpoint_callback(model, model_file_path, epoch, valid_loss, best_val_loss)
         lr_scheduler.step()
 
         # Append the current epoch's results to the lists

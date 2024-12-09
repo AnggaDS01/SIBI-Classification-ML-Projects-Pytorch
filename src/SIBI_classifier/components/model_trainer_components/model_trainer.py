@@ -44,6 +44,12 @@ class ModelTrainer:
             logger.info(f"Entered {log_manager.color_text(function_name, 'yellow')} method of {log_manager.color_text(class_name, 'yellow')} class in {log_manager.color_text(file_name, 'cyan')}")
 
             # =================================== TODO: Add Model Trainer code here ===================================
+            wandb.init(
+                project=self.wandb_config.project_name,
+                config=self.wandb_config.config
+            )
+            config = wandb.config
+
             logger.info("Loading pre-trained base model...")
             # Pre-trained base model
             base_model = models.densenet121(weights=models.DenseNet121_Weights.DEFAULT)
@@ -58,12 +64,6 @@ class ModelTrainer:
             device_mode, num_gpus = get_device()
 
             logger.info(f"Model Architecture: \n{summary(model, input_size=(self.model_trainer_config.batch_size, 3, *self.data_preprocessing_config.img_size[:2]))}")
-
-            wandb.init(
-                project=self.wandb_config.project_name,
-                config=self.wandb_config.config
-            )
-            config = wandb.config
 
             history = fit(
                 model,

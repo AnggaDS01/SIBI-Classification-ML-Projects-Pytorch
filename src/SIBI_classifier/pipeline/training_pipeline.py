@@ -8,7 +8,7 @@ from SIBI_classifier.configuration.configuration import ConfigurationManager
 from SIBI_classifier.components.data_ingestion_components.data_ingestion import DataIngestion
 from SIBI_classifier.components.data_preprocessing_components.data_preprocessing import DataPreprocessing
 from SIBI_classifier.components.model_trainer_components.model_trainer import ModelTrainer
-from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig, ModelTrainerConfig, WandbConfig)
+from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPreprocessingConfig, ModelTrainerConfig)
 
 from SIBI_classifier.utils.main_utils import display_function_info
 from SIBI_classifier.logger.logging import log_manager
@@ -48,7 +48,7 @@ class TrainPipeline:
     def start_data_preprocessing(
             self,
             data_ingestion_config: DataIngestionConfig
-        ) -> DataPreprocessingConfig:
+        ) -> torch.utils.data.Dataset:
 
         try:
             logger = log_manager.setup_logger("DataPreprocessingPipelineLogger")

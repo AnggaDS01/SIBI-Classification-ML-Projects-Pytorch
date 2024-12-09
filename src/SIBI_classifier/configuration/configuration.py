@@ -111,8 +111,8 @@ class ConfigurationManager:
 
         return wandb_config
     
-# if __name__ == '__main__':
-#     config = ConfigurationManager()
-#     get_config = config.get_wandb_config()
+if __name__ == '__main__':
+    config = ConfigurationManager()
+    get_config = config.get_wandb_config()
 
-#     print(get_config)
+    print(get_config.config['optimizer'])

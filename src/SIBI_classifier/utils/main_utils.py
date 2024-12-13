@@ -2,6 +2,7 @@ import os
 import inspect 
 import sys
 import yaml
+import dill
 
 from pathlib import Path
 from box import ConfigBox
@@ -11,6 +12,8 @@ from SIBI_classifier.logger.logging import log_manager
 
 create_directories_logger = log_manager.setup_logger("create_directories_logger")
 custom_title_print_logger = log_manager.setup_logger("title_print_logger")
+save_object_logger = log_manager.setup_logger("save object logger")
+load_object_logger = log_manager.setup_logger("load object logger")
 
 def read_yaml(path_to_yaml: Path=None) -> ConfigBox:
     """reads yaml file and returns
@@ -101,4 +104,63 @@ def custom_title_print(
         custom_title_print_logger.info(title)
 
     except Exception as e:
+        raise SIBIClassificationException(e, sys)
+
+def save_object(
+        file_path: str=None,  # Path to save the object
+        obj: object=None  # Object to be saved
+    ) -> None:
+
+    """
+    Save an object to a binary file using dill library.
+
+    Args:
+        file_path (str): Path to save the object.
+        obj (object): Object to be saved.
+
+    Returns:
+        None
+    """
+
+    try:
+        # Check if file already exists
+        if os.path.exists(file_path): 
+            # If file exists, skip saving and log a message
+            save_object_logger.info(f"File '{log_manager.color_text(file_path, 'cyan')}' already exists. Skipping saving.")
+            return 
+
+        # Open the file in binary write mode
+        with open(file_path, 'wb') as file_obj:
+            # Use dill library to dump the object to the file
+            dill.dump(obj, file_obj) 
+        
+        # Log a message to indicate that the object has been saved
+        save_object_logger.info(f"Object saved to {log_manager.color_text(file_path, 'cyan')}")
+
+    except Exception as e:
+        # If any error occurs, raise a SIBIClassificationException
+        raise SIBIClassificationException(e, sys)
+    
+
+def load_object(file_path: str=None) -> object:
+    """
+    Load an object from a binary file using dill library.
+
+    Args:
+        file_path (str): Path to the binary file containing the object.
+
+    Returns:
+        object: The loaded object, or None if the file does not exist.
+    """
+    try:
+        # Open the file in binary read mode
+        with open(file_path, 'rb') as file_obj:
+            # Use dill library to load the object from the file
+            return dill.load(file_obj)
+    except FileNotFoundError:
+        # If the file does not exist, log a message and return None
+        load_object_logger.info(f"File not found: {log_manager.color_text(file_path, 'cyan')}")
+        return None
+    except Exception as e:
+        # If any other error occurs, raise a SIBIClassificationException
         raise SIBIClassificationException(e, sys)

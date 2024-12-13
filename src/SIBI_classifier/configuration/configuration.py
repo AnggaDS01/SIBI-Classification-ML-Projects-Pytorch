@@ -34,7 +34,7 @@ class ConfigurationManager:
     
     def get_data_preprocessing_config(self) -> DataIngestionConfig:
         config = self.config.DATA_PREPROCESSING
-        # create_directories([config.OBJECTS_DIR_PATH])
+        create_directories([config.OBJECTS_DIR_PATH])
 
         data_preprocessing_config = DataPreprocessingConfig(
             labels_list_file_path = Path(config.LABELS_LIST_FILE_PATH),
@@ -111,8 +111,8 @@ class ConfigurationManager:
 
         return wandb_config
     
-if __name__ == '__main__':
-    config = ConfigurationManager()
-    get_config = config.get_wandb_config()
+# if __name__ == '__main__':
+#     config = ConfigurationManager()
+#     get_config = config.get_data_preprocessing_config()
 
-    print(get_config.config['optimizer'])
+#     print(get_config.class_weights_file_path)

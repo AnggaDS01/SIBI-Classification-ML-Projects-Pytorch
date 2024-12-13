@@ -8,9 +8,8 @@ from SIBI_classifier.entity.config_entity import (DataIngestionConfig, DataPrepr
 from SIBI_classifier.components.data_preprocessing_components.utils.calculate_distribution_class import calculate_class_distribution_torch, print_class_distribution
 from SIBI_classifier.components.data_preprocessing_components.utils.set_seed import set_seed
 from SIBI_classifier.components.data_preprocessing_components.utils.get_paths import collect_and_combine_images
-from SIBI_classifier.utils.main_utils import display_function_info
+from SIBI_classifier.utils.main_utils import display_function_info, custom_title_print, save_object
 from SIBI_classifier.logger.logging import log_manager
-from SIBI_classifier.utils.main_utils import custom_title_print
 from SIBI_classifier.components.data_preprocessing_components.utils.split_dataset import DatasetSplitter
 from SIBI_classifier.components.data_preprocessing_components.utils.show_data_info import FilePathInfo, DataInspector
 from SIBI_classifier.components.data_preprocessing_components.utils.processing_dataset import ImageDataset, ConvertPathsToTensor
@@ -67,9 +66,10 @@ class DataPreprocessing:
             )
 
             logger.info("Calculating class distribution...")
-            train_class_distribution, _ = calculate_class_distribution_torch(
+            train_class_distribution, train_class_weights = calculate_class_distribution_torch(
                 dataset=train_pt_paths, 
-                class_labels=self.data_preprocessing_config.label_list
+                class_labels=self.data_preprocessing_config.label_list,
+                class_weights_cvt_to_dict=False
             )
             custom_title_print("Class distribution on Train set:")
             print_class_distribution(train_class_distribution)
@@ -134,6 +134,11 @@ class DataPreprocessing:
             inspector.inspect(
                 train_dataset=train_pt_datasets,
                 valid_dataset=valid_pt_datasets,
+            )
+
+            save_object(
+                file_path=self.data_preprocessing_config.class_weights_file_path,
+                obj=train_class_weights
             )
 
             # ================================================================================================

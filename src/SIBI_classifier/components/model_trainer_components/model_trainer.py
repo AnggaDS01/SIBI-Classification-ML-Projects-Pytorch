@@ -7,7 +7,7 @@ import pandas as pd
 from torchvision import models
 from torchinfo import summary
 
-from SIBI_classifier.utils.main_utils import display_function_info
+from SIBI_classifier.utils.main_utils import display_function_info, load_object
 from SIBI_classifier.logger.logging import log_manager
 from SIBI_classifier.components.model_trainer_components.utils.setup_device_usage import get_device
 from SIBI_classifier.components.model_trainer_components.utils.model_fit import fit
@@ -50,6 +50,9 @@ class ModelTrainer:
             )
             config = wandb.config
 
+            logger.info(f"Loading classes weights from file: {log_manager.color_text(self.data_preprocessing_config.class_weights_file_path, 'cyan')}")
+            train_class_weights = load_object(file_path=self.data_preprocessing_config.class_weights_file_path)
+
             logger.info("Loading pre-trained base model...")
             # Pre-trained base model
             base_model = models.densenet121(weights=models.DenseNet121_Weights.DEFAULT)
@@ -70,6 +73,7 @@ class ModelTrainer:
                 self.train_pt_datasets,
                 self.valid_pt_datasets,
                 self.data_preprocessing_config.label_list,
+                train_class_weights,
                 config.epochs,
                 config.batch_size,
                 self.wandb_config.config['criterion'],

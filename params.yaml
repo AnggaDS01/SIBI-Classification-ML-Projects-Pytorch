@@ -6,7 +6,7 @@ LABEL_LIST: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N
 
 SEED: 42
 BATCH_SIZE: 16
-EPOCHS: 2
+EPOCHS: 1
 LEARNING_RATE: 0.001
 CRITERION: CrossEntropyLoss
 OPTIMIZER: Adam

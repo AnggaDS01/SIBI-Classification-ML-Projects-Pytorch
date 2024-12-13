@@ -11,7 +11,8 @@ COLOR_TEXT = 'yellow'
 
 def calculate_class_distribution_torch(
         dataset: Dataset=None,  # The dataset from which we want to calculate the class distribution. This dataset should be a torch.utils.data.Dataset.
-        class_labels: list=None  # The list of class labels. This list should contain all possible class labels.
+        class_labels: list=None,  # The list of class labels. This list should contain all possible class labels.
+        class_weights_cvt_to_dict: bool=True # Whether to convert the class weights to a dictionary
     ) -> tuple:
     """
     This function calculates the class distribution and the corresponding weights for each class in the given dataset.
@@ -43,10 +44,13 @@ def calculate_class_distribution_torch(
             classes=np.unique(class_indices),
             y=class_indices
         )
-        
+        print(class_weight_values)
         # Create a dictionary where the keys are the class labels and the values are the weights for each class
-        class_weights = {i: weight for i, weight in enumerate(class_weight_values)}
-        
+        if class_weights_cvt_to_dict:
+            class_weights = {i: weight for i, weight in enumerate(class_weight_values)}
+        else:
+            class_weights = class_weight_values
+
         # Return the class distribution and the class weights
         return class_counts, class_weights
 

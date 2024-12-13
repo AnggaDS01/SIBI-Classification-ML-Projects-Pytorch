@@ -183,6 +183,7 @@ def fit(
     train_pt_datasets: torch.utils.data.Dataset = None,
     valid_pt_datasets: torch.utils.data.Dataset = None,
     class_names: list = None,
+    class_weights: list = None,
     epochs: int = 1,
     batch_size: int = 32,
     criterion: torch.nn.Module = None,
@@ -201,6 +202,7 @@ def fit(
         train_pt_datasets (Dataset): The training dataset.
         valid_pt_datasets (Dataset): The validation dataset.
         class_names (list): List of class names for logging purposes.
+        class_weights (list): List of class weights for weighted loss calculation.
         epochs (int): Number of training epochs.
         batch_size (int): Number of samples per batch to load.
         criterion (torch.nn.Module): Loss function used to evaluate the model.
@@ -232,7 +234,8 @@ def fit(
     optimizer_obj = optimizer(model.parameters(), lr=learning_rate)
 
     # Create a criterion object
-    criterion_obj = criterion()
+    class_weights_tensor = torch.tensor(class_weights, dtype=torch.float).to(device)
+    criterion_obj = criterion(weight=class_weights_tensor)
 
     # Create a learning rate scheduler
     lr_scheduler = lr_scheduler_callback(optimizer_obj, step_size=10)
